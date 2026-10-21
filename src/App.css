@@ -143,6 +143,16 @@
   justify-content: center;
 }
 
+.step-number-label {
+  display: inline-block;
+  margin: 0 0 6px !important;
+  color: #5f6d8f !important;
+  font-size: 0.8rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12rem;
+  text-transform: uppercase;
+}
+
 .main-title {
   margin: 0 0 12px !important;
   color: #1d294d !important;
@@ -370,6 +380,13 @@
   align-items: center;
   gap: 15px;
   padding: 16px 18px !important;
+  position: relative;
+}
+
+.addon-toggle-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .addon-check {

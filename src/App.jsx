@@ -165,6 +165,7 @@ function App() {
 
   const renderStepOne = () => (
     <section className="step-panel" aria-label="Step 1">
+      <Typography className="step-number-label">Step 1</Typography>
       <Typography variant="h3" className="main-title">
         Personal info
       </Typography>
@@ -229,6 +230,7 @@ function App() {
 
   const renderStepTwo = () => (
     <section className="step-panel" aria-label="Step 2">
+      <Typography className="step-number-label">Step 2</Typography>
       <Typography variant="h3" className="main-title">
         Select your plan
       </Typography>
@@ -307,6 +309,7 @@ function App() {
 
   const renderStepThree = () => (
     <section className="step-panel" aria-label="Step 3">
+      <Typography className="step-number-label">Step 3</Typography>
       <Typography variant="h3" className="main-title">
         Pick add-ons
       </Typography>
@@ -315,32 +318,31 @@ function App() {
       </Typography>
 
       <Box className="addon-list">
-        {addOnData.map((addon) => (
-          <Card
-            key={addon.id}
-            className={`addon_card ${selectedAddOns.includes(addon.id) ? 'selected' : ''}`}
-            onClick={() => toggleAddOn(addon.id)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault()
-                toggleAddOn(addon.id)
-              }
-            }}
-          >
-            <Box className="addon-check">
-              {selectedAddOns.includes(addon.id) ? '✓' : ''}
-            </Box>
-            <Box className="addon-copy">
-              <Typography className="addon-name">{addon.name}</Typography>
-              <Typography className="addon-desc">{addon.description}</Typography>
-            </Box>
-            <Typography className="addon-price">
-              +${billing === 'monthly' ? addon.monthly : addon.yearly}/{billing === 'monthly' ? 'mo' : 'yr'}
-            </Typography>
-          </Card>
-        ))}
+        {addOnData.map((addon) => {
+          const isSelected = selectedAddOns.includes(addon.id)
+
+          return (
+            <label
+              key={addon.id}
+              className={`addon_card ${isSelected ? 'selected' : ''}`}
+            >
+              <input
+                type="checkbox"
+                className="addon-toggle-input"
+                checked={isSelected}
+                onChange={() => toggleAddOn(addon.id)}
+              />
+              <Box className="addon-check">{isSelected ? '✓' : ''}</Box>
+              <Box className="addon-copy">
+                <Typography className="addon-name">{addon.name}</Typography>
+                <Typography className="addon-desc">{addon.description}</Typography>
+              </Box>
+              <Typography className="addon-price">
+                +${billing === 'monthly' ? addon.monthly : addon.yearly}/{billing === 'monthly' ? 'mo' : 'yr'}
+              </Typography>
+            </label>
+          )
+        })}
       </Box>
 
       <div className="button-row">
@@ -356,6 +358,7 @@ function App() {
 
   const renderStepFour = () => (
     <section className="step-panel" aria-label="Step 4">
+      <Typography className="step-number-label">Step 4</Typography>
       <Typography variant="h3" className="main-title">
         Finishing up
       </Typography>
